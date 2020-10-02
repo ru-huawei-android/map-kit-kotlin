@@ -12,7 +12,7 @@
   - Использовать подпись, которая идет вместе с проектом.
   - Создать новое приложение в Huawei Developer console и подписать данное приложение своей подписью с использованием Map Kit(включается в консоле).
 
-### Документация
+# Документация
 
 - https://developer.huawei.com/consumer/en/doc/development/HMSCore-GuidesV5/dev-process-0000001050167616-V5
 - https://developer.huawei.com/consumer/en/doc/development/HMSCore-GuidesV5/android-sdk-introduction-0000001050158633-V5
