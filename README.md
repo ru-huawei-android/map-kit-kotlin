@@ -5,7 +5,7 @@
 - MainActivity - Стартовая с выбором примера.
 - MarkerActivity - Базовая с работой маркеров и основными событиями.
 - BigMarkerActivity - Расширенная с работой маркеров и кластеризацией.
-- RoutesActivity - Построение маршрутов через WEP Direction API и полилиний.
+- RoutesActivity - Построение маршрутов через WEB Direction API и полилиний.
 
 # Варианты запуска Map Kit Demo
 
