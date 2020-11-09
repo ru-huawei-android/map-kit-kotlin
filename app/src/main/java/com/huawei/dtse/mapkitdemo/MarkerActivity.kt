@@ -73,8 +73,7 @@ class MarkerActivity : AppCompatActivity(), OnMapReadyCallback, View.OnClickList
     override fun onMapReady(map: HuaweiMap?) {
         Log.d(TAG, "onMapReady: ")
         this.map = map
-        this.map?.let {
-            it.apply {
+        this.map?.apply {
                 isMyLocationEnabled = true // Enable the my-location overlay.
                 uiSettings.isMyLocationButtonEnabled = true // Enable the my-location icon.
                 setMarkersClustering(true) // Enable the clustering.
@@ -83,7 +82,6 @@ class MarkerActivity : AppCompatActivity(), OnMapReadyCallback, View.OnClickList
 
             addMarkerListener()
             addMapListener()
-        }
 
         if (!isRestore) {
             map?.moveCamera(CameraUpdateFactory.newLatLngZoom(START_POINT, 4f))
