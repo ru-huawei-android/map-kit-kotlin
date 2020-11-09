@@ -80,17 +80,22 @@ class BigMarkerActivity : AppCompatActivity(), OnMapReadyCallback, View.OnClickL
 
     override fun onMapReady(map: HuaweiMap?) {
         Log.d(TAG, "onMapReady: ")
-        this.map = map
-        this.map?.let {
-            it.apply {
-                isMyLocationEnabled = true
-                uiSettings.isMyLocationButtonEnabled = true
-                setMarkersClustering(false)
-            }
+        this.map = map?.apply {
+            isMyLocationEnabled = true
+            uiSettings.isMyLocationButtonEnabled = true
+            setMarkersClustering(false)
         }
 
         if (!isRestore) {
             map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(59.939095, 30.315868), 10f))
+        }
+
+        for (i in 0 until 5) {
+        map?.addMarker(
+            MarkerOptions()
+                .position(LatLng(59.0, 30.0))
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))
+                .clusterable(true))
         }
     }
 
