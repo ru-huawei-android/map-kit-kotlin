@@ -30,8 +30,13 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+            signingConfig signingConfigs.release
+            minifyEnabled false
         }
     }
 }
@@ -49,7 +54,7 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
 
     //huawei
-    implementation 'com.huawei.hms:maps:5.0.2.300'
+    implementation 'com.huawei.hms:maps:5.0.3.301'
 }
 
 //Huawei plugin
