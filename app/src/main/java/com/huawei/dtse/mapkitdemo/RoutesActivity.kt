@@ -142,41 +142,42 @@ class RoutesActivity : AppCompatActivity(), OnMapReadyCallback, View.OnClickList
 
         directionViewModel?.let {
             requestBody(
-                markerList[0].position,
-                markerList[1].position,
-                alternatives.isChecked,
-                avoid
+                    markerList[0].position,
+                    markerList[1].position,
+                    alternatives.isChecked,
+                    avoid
             ).let { it1 ->
                 progress_bar.visibility = View.VISIBLE
                 it.getDrivingDirectionLiveData(it1)
                     .observe(this, Observer { direction ->
                         if (direction.returnDesc != "OK") {
                             Toast.makeText(this, "Cannot make the route.", Toast.LENGTH_SHORT)
-                                .show()
+                                    .show()
+                            progress_bar.visibility = View.GONE
                             return@Observer
                         }
                         Log.d(TAG, direction.toString())
                         it.getPolylineLiveData(direction)
-                            .observe(this, Observer { routes ->
-                                start_text.apply {
-                                    text = text(context, R.string.last_step_text)
-                                    setTextColor(Color.BLUE)
-                                }
-
-                                routes.forEach {
-                                    val polyline = map?.addPolyline(
-                                        PolylineOptions()
-                                            .addAll(it.value)
-                                            .clickable(true)
-                                            .color(if (alternatives.isChecked) Color.GRAY else Color.BLUE)
-                                            .width(3f)
-                                    )
-                                    polyline?.let { it1 ->
-                                        polylineList.add(it1)
+                                .observe(this, Observer { routes ->
+                                    start_text.apply {
+                                        text = text(context, R.string.last_step_text)
+                                        setTextColor(Color.BLUE)
                                     }
-                                }
-                                progress_bar.visibility = View.GONE
-                            })
+
+                                    routes.forEach {
+                                        val polyline = map?.addPolyline(
+                                                PolylineOptions()
+                                                        .addAll(it.value)
+                                                        .clickable(true)
+                                                        .color(if (alternatives.isChecked) Color.GRAY else Color.BLUE)
+                                                        .width(3f)
+                                        )
+                                        polyline?.let { it1 ->
+                                            polylineList.add(it1)
+                                        }
+                                    }
+                                    progress_bar.visibility = View.GONE
+                                })
                     })
             }
         }
@@ -185,35 +186,36 @@ class RoutesActivity : AppCompatActivity(), OnMapReadyCallback, View.OnClickList
     private fun makeWalkingRoute() {
         directionViewModel?.let {
             requestBody(
-                markerList[0].position,
-                markerList[1].position
+                    markerList[0].position,
+                    markerList[1].position
             ).let { it1 ->
                 progress_bar.visibility = View.VISIBLE
                 it.getWalkingDirectionLiveData(it1)
                     .observe(this, Observer { direction ->
                         if (direction.returnDesc != "OK") {
                             Toast.makeText(this, "Cannot make the route.", Toast.LENGTH_SHORT)
-                                .show()
+                                    .show()
+                            progress_bar.visibility = View.GONE
                             return@Observer
                         }
                         Log.d(TAG, direction.toString())
                         it.getPolylineLiveData(direction)
-                            .observe(this, Observer { routes ->
-                                start_text.apply {
-                                    text = text(context, R.string.last_step_text)
-                                    setTextColor(Color.BLUE)
-                                }
-                                routes.forEach {
-                                    val polyline = map?.addPolyline(
-                                        PolylineOptions()
-                                            .addAll(it.value)
-                                            .color(Color.GREEN)
-                                            .width(3f)
-                                    )
-                                    polyline?.let { it1 -> polylineList.add(it1) }
-                                }
-                                progress_bar.visibility = View.GONE
-                            })
+                                .observe(this, Observer { routes ->
+                                    start_text.apply {
+                                        text = text(context, R.string.last_step_text)
+                                        setTextColor(Color.BLUE)
+                                    }
+                                    routes.forEach {
+                                        val polyline = map?.addPolyline(
+                                                PolylineOptions()
+                                                        .addAll(it.value)
+                                                        .color(Color.GREEN)
+                                                        .width(3f)
+                                        )
+                                        polyline?.let { it1 -> polylineList.add(it1) }
+                                    }
+                                    progress_bar.visibility = View.GONE
+                                })
                     })
             }
         }
@@ -222,35 +224,36 @@ class RoutesActivity : AppCompatActivity(), OnMapReadyCallback, View.OnClickList
     private fun makeBicyclingRoute() {
         directionViewModel?.let {
             requestBody(
-                markerList[0].position,
-                markerList[1].position
+                    markerList[0].position,
+                    markerList[1].position
             ).let { it1 ->
                 progress_bar.visibility = View.VISIBLE
                 it.getBicyclingDirectionLiveData(it1)
                     .observe(this, Observer { direction ->
                         if (direction.returnDesc != "OK") {
                             Toast.makeText(this, "Cannot make the route.", Toast.LENGTH_SHORT)
-                                .show()
+                                    .show()
+                            progress_bar.visibility = View.GONE
                             return@Observer
                         }
                         Log.d(TAG, direction.toString())
                         it.getPolylineLiveData(direction)
-                            .observe(this, Observer { routes ->
-                                start_text.apply {
-                                    text = text(context, R.string.last_step_text)
-                                    setTextColor(Color.BLUE)
-                                }
-                                routes.forEach {
-                                    val polyline = map?.addPolyline(
-                                        PolylineOptions()
-                                            .addAll(it.value)
-                                            .color(Color.RED)
-                                            .width(3f)
-                                    )
-                                    polyline?.let { it1 -> polylineList.add(it1) }
-                                }
-                                progress_bar.visibility = View.GONE
-                            })
+                                .observe(this, Observer { routes ->
+                                    start_text.apply {
+                                        text = text(context, R.string.last_step_text)
+                                        setTextColor(Color.BLUE)
+                                    }
+                                    routes.forEach {
+                                        val polyline = map?.addPolyline(
+                                                PolylineOptions()
+                                                        .addAll(it.value)
+                                                        .color(Color.RED)
+                                                        .width(3f)
+                                        )
+                                        polyline?.let { it1 -> polylineList.add(it1) }
+                                    }
+                                    progress_bar.visibility = View.GONE
+                                })
                     })
             }
         }
@@ -299,15 +302,15 @@ class RoutesActivity : AppCompatActivity(), OnMapReadyCallback, View.OnClickList
 
     private fun addMarker(latLng: LatLng, title: String) {
         val iconColors = arrayOf(
-            BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED),
-            BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)
+                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED),
+                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)
         )
 
         val marker = map?.addMarker(
-            MarkerOptions()
-                .position(latLng)
-                .icon(iconColors[counter])
-                .title(title)
+                MarkerOptions()
+                        .position(latLng)
+                        .icon(iconColors[counter])
+                        .title(title)
         )
         marker?.let { markerList.add(it) }
     }
